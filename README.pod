@@ -1,0 +1,60 @@
+=encoding utf-8
+
+=head1 NAME
+
+CheeseIVR - SIP를 사용한 전화 자동 응답 시스템의 오픈 소스 구현체
+
+=head1 SYNOPSIS
+
+    #!/usr/bin/python3
+    from CheeseIVR import ...
+
+    ivr = CheeseIVR() 
+
+    @ivr.on_call()
+    def on_call(context):
+        context.play_audio('introduce.mp3')
+
+        while true:
+            input = context.read()
+
+            if input == 1:
+                record(context)
+                context.hangup()
+            elif input == 2:
+                context.hangup() 
+            else:
+                context.play_audio('try_again.mp3')
+
+    def record(context):
+        audio = context.record(10)
+        audio.write('/tmp/voice.wav')
+
+
+=head1 DESCRIPTION
+
+TODO: DESCRIPTION 작성
+
+=head1 LICENSE
+
+이 소프트웨어는 LGPL 버전 3 라이선스 하에 자유롭게 배포됩니다.
+
+라이선스에 대해서는 저장소 내에 있는 C<LICENSE> 파일을 참조하십시오.
+
+=head1 AUTHOR
+
+이 소프트웨어는 GDG SSU 동아리 멤버들이 모여 만든 Team Cheeseburger에서 작성하였습니다.
+
+=head2 Team Cheeseburger @ L<GDG SSU|http://gdg-ssu.github.io/recruit/>
+
+=over 4
+
+=item * Gyuhwan Park (github:unstabler)
+
+=item * Hyemi Ahn (github:rueru35)
+
+=item * Kaeun Lee (github:likalella) 
+
+=back
+
+
